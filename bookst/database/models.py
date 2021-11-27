@@ -8,7 +8,7 @@ class Book(models.Model):
     book_text = models.CharField(max_length=60)
     loan_date = models.DateTimeField('Loan Date')
     url_image = models.CharField(max_length=200)
-    name_user =models.CharField(max_length=60)
+    name_user = models.CharField(max_length=60)
 
     def __str__(self):
         return self.book_text
@@ -17,7 +17,7 @@ class Book(models.Model):
 
 
 class Choice(models.Model):
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
+    book = models.ForeignKey(Book, on_delete=models.CASCADE, null=True)
     choice_text = models.CharField(max_length=200)
 
     def __str__(self):
