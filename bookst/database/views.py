@@ -1,18 +1,17 @@
-from django.http import HttpResponse
-from django.template import loader
+from django.shortcuts import render
+from django.http import Http404
 
 from .models import Book
 
 
 def index(request):
-    latest_question_list = Book.objects.order_by('-pub_date')[:5]
-    template = loader.get_template('polls/index.html')
-    context = {
-        'latest_question_list': latest_question_list,
-    }
-    return HttpResponse(template.render(context, request))
-# Leave the rest of the views (detail, results, vote) unchanged
+    latest_book_list = Book.objects.order_by('-pub_date')[:5]
+    context = {'latest_book_list': latest_book_list}
+    return render(request, 'database/index.html', context)
 
 def detail(request, book_id):
-    return HttpResponse("You're looking at book %s." % book_id)
-
+    try:
+        book = Book.objects.get(pk=book_id)
+    except Book.DoesNotExist:
+        raise Http404("Book does not exist")
+    return render(request, 'database/detail.html', {'Book': book})
