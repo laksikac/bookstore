@@ -9,6 +9,7 @@ class Book(models.Model):
     loan_date = models.DateTimeField('Loan Date')
     url_image = models.CharField(max_length=200)
     name_user = models.CharField(max_length=60)
+    description = models.CharField(max_length=200)
 
     def __str__(self):
         return self.book_text
