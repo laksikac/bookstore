@@ -15,7 +15,7 @@ class Book(models.Model):
 
     @admin.display(
         boolean=True,
-        ordering='loan_date',
+        ordering='Date',
         description='Published recently?',
     )
     
