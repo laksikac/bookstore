@@ -1,7 +1,7 @@
 <div id="search-component">
   <label for="search-box">Search </label>
   <input #searchBox id="search-box" (input)="search(searchBox.value)" />
-
+  
   <ul class="search-result">
     <li *ngFor="let book of books$ | async" >
       <a routerLink="/detail/{{book.id}}">

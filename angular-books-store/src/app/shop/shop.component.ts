@@ -32,7 +32,7 @@ export class ShopComponent implements OnInit {
   }
 
   delete(book: Book): void {
-    this.books = this.books.filter(h => h !== book);
+    this.books = this.books.filter(b => b !== book);
     this.bookService.deleteBook(book.id).subscribe();
   }
 
