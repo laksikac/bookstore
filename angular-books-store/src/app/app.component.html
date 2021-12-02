@@ -1,8 +1,10 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/books">Books</a>
-  <a routerLink="/shop">SHOP</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+<body>
+  <h1 style="padding: 10px; font-family: 'Noto Sans Thai', sans-serif;">{{title}}</h1>
+  <nav style="padding-left: 5px;">
+    <a routerLink="/dashboard">Dashboard</a>
+    <a routerLink="/books">Books</a>
+    <a routerLink="/shop">Shop</a>
+  </nav>
+  <router-outlet></router-outlet>
+  <app-messages></app-messages>
+  </body>

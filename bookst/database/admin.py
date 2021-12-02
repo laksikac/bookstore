@@ -8,6 +8,8 @@ class BookAdmin(admin.ModelAdmin):
         ('Loan Date information', {'fields': ['loan_date']}),
         ('URL Image',             {'fields': ['url_image']}),
         ('Name User',             {'fields': ['name_user']}),
+        ('Description',           {'fields': ['description']}),
+
     ]
 
 

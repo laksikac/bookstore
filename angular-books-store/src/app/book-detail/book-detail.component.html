@@ -1,13 +1,37 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap" rel="stylesheet">
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div class="w3-top">
+    <div class="w3-bar w3-dark-gray w3-card" id="myNavbar" style="letter-spacing:2px; font-size: 15px;">
+      <a href="#dashboard" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-home"></i>Home</a>
+      <!-- Right-sided navbar links. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#dashboard/search" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-search"></i>Search</a>
+        <a href="#menu" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray">Menu</a>
+        <a href="#contact" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray">Contact</a>
+      </div>
+    </div>
+  </div>
 
 <div *ngIf="book">
 
-    <h2>{{book.name | uppercase}} Details</h2>
+    <h2>{{book.book_text | uppercase}}</h2>
+    <img src="{{book.url_image}}">
     <div><span>id: </span>{{book.id}}</div>
+    {{book.description}}
     <div>
-      <label for="book-name">Book name: </label>
-      <input id="book-name" [(ngModel)]="book.name" placeholder="name">
+      <label for="book-book_text">Book name: </label>
+      <input id="book-book_text [(ngModel)]="book.bookbook-book_text placeholder="name">
     </div>
     <button (click)="goBack()">Back</button>
-    <button (click)="save()">Choose</button>
-  
+    <button (click)="save()">Confirm</button>
   </div>
+</body>

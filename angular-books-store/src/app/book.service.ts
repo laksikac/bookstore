@@ -1,21 +1,21 @@
 import { Injectable } from '@angular/core';
+import { Book } from './book';
 
 import { Observable, of } from 'rxjs';
-
-import { Book } from './book';
 import { MessageService } from './message.service';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class BookService {
 
+  constructor(
+    private http: HttpClient,
+    private messageService: MessageService) { }
 
-
-  /** GET heroes from the server */
-  /** GET heroes from the server */
+  /** GET books from the server */
   getBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(this.booksUrl)
       .pipe(
@@ -23,7 +23,8 @@ export class BookService {
         catchError(this.handleError<Book[]>('getBooks', []))
       );
   }
-  /** GET hero by id. Will 404 if id not found */
+
+  /** GET book by id. Will 404 if id not found */
   getBook(id: number): Observable<Book> {
     const url = `${this.booksUrl}${id}/`;
     return this.http.get<Book>(url).pipe(
@@ -31,18 +32,13 @@ export class BookService {
       catchError(this.handleError<Book>(`getBook id=${id}`))
     );
   }
-
-  constructor(
-    private http: HttpClient,
-    private messageService: MessageService) { }
-
-  /** Log a HeroService message with the MessageService */
+  /** Log a BookService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`BookService: ${message}`);
   }
 
-  private booksUrl = 'http://localhost:8000/books/';  // URL to web api
-
+  private booksUrl = 'http://localhost:8000/database/';  // URL to web api
+ 
   /**
  * Handle Http operation that failed.
  * Let the app continue.
@@ -62,46 +58,48 @@ export class BookService {
       return of(result as T);
     };
   }
-  /** PUT: update the hero on the server */
-  updateBook(book: Book): Observable<any> {
-    const url = `${this.booksUrl}${book.id}/`;
-    return this.http.put(url,book,this.httpOptions).pipe(
-      tap(_ => this.log(`updated book id=${book.id}`)),
-      catchError(this.handleError<any>('updateBook'))
-    
-    );
-  }
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-  /** POST: add a new hero to the server */
-  addBook(book: Book): Observable<Book> {
-  return this.http.post<Book>(this.booksUrl, book, this.httpOptions).pipe(
-    tap((newBook: Book) => this.log(`added book w/ id=${newBook.id}`)),
-    catchError(this.handleError<Book>('addBook'))
-  );
-}
-/** DELETE: delete the hero from the server */
-  deleteBook(id: number): Observable<Book> {
-  const url = `${this.booksUrl}${id}/`;
 
-  return this.http.delete<Book>(url, this.httpOptions).pipe(
-    tap(_ => this.log(`deleted book id=${id}/`)),
-    catchError(this.handleError<Book>('deleteBook'))
-  );
-}
-/* GET heroes whose name contains search term */
-  searchBooks(term: string): Observable<Book[]> {
-  if (!term.trim()) {
-    // if not search term, return empty hero array.
-    return of([]);
+  /** PUT: update the book on the server */
+  updateBook(book: Book): Observable<any> {
+    const url = `${this.booksUrl}${book.id}/`;
+    return this.http.put(url, book, this.httpOptions).pipe(
+      tap(_ => this.log(`updated book id=${book.id}`)),
+      catchError(this.handleError<any>('updateBook'))
+    );
   }
-  const url = `${this.booksUrl}search/?_name=${term}`;
-  return this.http.get<Book[]>(url).pipe(
-    tap(x => x.length ?
-       this.log(`found books matching "${term}"`) :
-       this.log(`no books matching "${term}"`)),
-    catchError(this.handleError<Book[]>('searchBooks', []))
-  );
-}
+
+  /** POST: add a new book to the server */
+  addBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(this.booksUrl, book, this.httpOptions).pipe(
+      tap((newBook: Book) => this.log(`added book w/ id=${newBook.id}`)),
+      catchError(this.handleError<Book>('addBook'))
+    );
+  }
+
+  /** DELETE: delete the book from the server */
+  deleteBook(id: number): Observable<Book> {
+    const url = `${this.booksUrl}${id}/`;
+    return this.http.delete<Book>(url, this.httpOptions).pipe(
+      tap(_ => this.log(`deleted bookid=${id}`)),
+      catchError(this.handleError<Book>('deleteBook'))
+    );
+  }
+
+  /* GET books whose name contains search term */
+  searchBooks(term: string): Observable<Book[]> {
+    if (!term.trim()) {
+      // if not search term, return empty book array.
+      return of([]);
+    }
+    return this.http.get<Book[]>(`${this.booksUrl}search/?_book_text=${term}`).pipe(
+      tap(x => x.length ?
+        this.log(`found books matching "${term}"`) :
+        this.log(`no books matching "${term}"`)),
+      catchError(this.handleError<Book[]>('searchBooks', []))
+    );
+  }
 }

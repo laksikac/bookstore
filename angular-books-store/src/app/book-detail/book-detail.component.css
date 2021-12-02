@@ -1,0 +1,21 @@
+body {
+    font-family: "Courier New", sans-serif;
+    font-size: 17px;
+}
+
+h2 {
+  font-family: "Lucida Console", sans-serif;
+  font-size: 25px;
+  color: #1c6470;
+  margin-left: 50px;
+  padding: 20px;
+  text-align: center;
+}
+
+img {
+    width: 360px;
+    height: 500px;
+    padding-left: 20px;
+    margin-left: 600px;
+    border-color: whitesmoke;
+}

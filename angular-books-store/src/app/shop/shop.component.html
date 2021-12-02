@@ -1,1 +1,46 @@
-<p>shop works!</p>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Thai:wght@300&display=swap" rel="stylesheet">
+
+<body>
+  <!-- Navbar (sit on top) -->
+  <div style="padding:15px 10px" id="shophome"></div>
+  <div class="w3-top">
+    <div class="w3-bar w3-dark-gray w3-card" id="myNavbar" style="letter-spacing:2px; font-size: 15px;">
+      <a href="#home" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-home"></i>Home</a>
+      <!-- Right-sided navbar links. Hide them on small screens -->
+      <div class="w3-right w3-hide-small">
+        <a href="#homesearch" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-search"></i></a>
+        <a href="#shophome" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-heart"></i></a>
+        <a href="#bookshome" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-list"></i></a>
+      </div>
+    </div>
+  </div>
+
+<h2>Shop</h2>
+<ul class="books">
+  <li *ngFor="let book of books">
+    <a routerLink="/detail/{{book.id}}">
+      <span class="badge">{{book.id}}</span> {{book.book_text}}
+    </a>
+    <button class="delete" title="delete book"
+      (click)="delete(book)">Delete</button>
+  </li>
+</ul>
+
+<div>
+  <label for="new-book">Book name : </label>
+  <input id="new-book" #bookName />
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  <button class="add-button" (click)="add(bookName.value); bookName.value=''">
+    Add Book
+  </button>
+</div>
+
+</body>

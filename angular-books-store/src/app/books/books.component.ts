@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Book } from '../book';
 import { BookService } from '../book.service';
-import { MessageService } from '../message.service';
 
 @Component({
   selector: 'app-books',
@@ -10,6 +8,7 @@ import { MessageService } from '../message.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
+  
   books: Book[] = [];
 
   constructor(private bookService: BookService) { }
@@ -23,16 +22,17 @@ export class BooksComponent implements OnInit {
     .subscribe(books => this.books = books);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.bookService.addBook({ name } as Book)
+  add(book_text: string): void {
+    book_text = book_text.trim();
+    if (!book_text) { return; }
+    this.bookService.addBook({ book_text } as Book)
       .subscribe(book => {
         this.books.push(book);
       });
   }
+
   delete(book: Book): void {
-    this.books = this.books.filter(b => b !== book);
+    this.books = this.books.filter(h => h !== book);
     this.bookService.deleteBook(book.id).subscribe();
   }
 }
