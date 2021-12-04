@@ -37,11 +37,14 @@
 <div>
   <label for="new-book">Book name : </label>
   <input id="new-book" #bookName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
   <button class="add-button" (click)="add(bookName .value); bookName.value=''">
     Add Book
-  </button>
+  </button><br>
+  
+
+  <!-- (click) passes input value to add() and then clears the input -->
+  
+  
 </div>
 
 </body>

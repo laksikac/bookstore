@@ -23,15 +23,28 @@
 
 <div *ngIf="book">
 
-    <h2>{{book.book_text | uppercase}}</h2>
+    <h2>{{book.book_text | uppercase}} Details</h2>
     <img src="{{book.url_image}}">
     <div><span>id: </span>{{book.id}}</div>
-    {{book.description}}
+    <div><span>name: </span>{{book.book_text}}</div>
+    <div><span>date: </span>{{book.loan_date}}</div>
+    <div><span>description: </span>{{book.description}}</div>
     <div>
-      <label for="book-book_text">Book name: </label>
-      <input id="book-book_text [(ngModel)]="book.bookbook-book_text placeholder="name">
+      <label for="book-book_text">Book name : </label>
+      <input id="book-book_text" [(ngModel)]="book.book_text" placeholder="name"><br>
+      <label for="book-loan_date">Date : </label>
+      <input id="book-loan_date" [(ngModel)]="book.loan_date" placeholder="date"><br>
+      <label for="book-url_image">Url image : </label>
+      <input id="book-url_image" [(ngModel)]="book.url_image" placeholder="image"><br>
+      <label for="book-name_user">User name : </label>
+      <input id="book-name_user" [(ngModel)]="book.name_user" placeholder="user"><br>
+      <label for="book-description">description : </label>
+      <input id="book-description" [(ngModel)]="book.description" placeholder="description"><br>
     </div>
+
     <button (click)="goBack()">Back</button>
     <button (click)="save()">Confirm</button>
-  </div>
+    </div>
+    
+    
 </body>
