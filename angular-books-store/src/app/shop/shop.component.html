@@ -33,18 +33,25 @@
       (click)="delete(book)">Delete</button>
   </li>
 </ul>
-
-<div>
-  <label for="new-book">Book name : </label>
-  <input id="new-book" #bookName />
-  <button class="add-button" (click)="add(bookName .value); bookName.value=''">
-    Add Book
-  </button><br>
+<div id="search-component">
+  <label for="search-box">Search </label>
+  <input #searchBox id="search-box" (input)="search(searchBox.value)" />
   
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  
-  
+  <ul class="search-result">
+    <li *ngFor="let book of books$ | async" >
+      <a routerLink="/detail/{{book.id}}">
+        {{book.book_text}}
+      </a>
+    </li>
+  </ul>
 </div>
+<label for="new-book">Book name : </label>
+<input id="new-book" #bookName />
+<button class="add-button" (click)="add(bookName .value); bookName.value=''">
+  Add Book
+</button><br>
+
+
+
 
 </body>

@@ -1,7 +1,8 @@
 from rest_framework import serializers
-from control.models import Control, LANGUAGE_CHOICES, STYLE_CHOICES
 
-class ControlSerializer(serializers.ModelSerializer):
+from database.models import Book
+
+class BookSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Control
-        fields = ['id', 'title', 'code', 'linenos', 'language', 'style']
+        model = Book
+        fields = ['id', 'book_text', 'loan_date', 'url_image', 'name_user', 'description']
