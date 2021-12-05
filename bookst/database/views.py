@@ -45,7 +45,7 @@ def bookApi(request,id=0):
         book_data=JSONParser().parse(request)
         book_serializer = BookSerializer(data=book_data)
         if book_serializer.is_valid():
-            book_serializer.save()
+            book_serializer.add()
             return JsonResponse("Added Successfully!!" , safe=False)
         return JsonResponse("Failed to Add.",safe=False)
     

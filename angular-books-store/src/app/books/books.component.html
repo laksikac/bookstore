@@ -26,20 +26,11 @@
 <ul class="books">
   <li *ngFor="let book of books">
     <a routerLink="/detail/{{book.id}}">
+      <img src="{{book.url_image}}"><br>
       <span class="badge">{{book.id}}</span> {{book.book_text}}
     </a>
   </li>
 </ul>
-
-<div>
-  <label for="new-book">Book name : </label>
-  <input id="new-book" #bookName />
-
-  <!-- (click) passes input value to add() and then clears the input -->
-  <button class="add-button" (click)="add(bookName.value); bookName.value=''">
-    Add Book
-  </button>
-</div>
 
 </body>
 

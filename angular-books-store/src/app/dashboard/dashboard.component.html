@@ -26,9 +26,24 @@
 <div class="books-menu">
   <a *ngFor="let book of books"
       routerLink="/detail/{{book.id}}">
-      <img src="{{book.url_image}}"><br>
-      {{book.book_text}}<br><br>
+      <div class="flip-card" >
+        <div class="flip-card-inner">
+          <div class="flip-card-front">
+             <img src="{{book.url_image}}" alt="Avatar" style="width:300px;height:300px;">
+            </div>
+            <div class="flip-card-back" >
+              <h1>{{book.book_text}}</h1> 
+              
+            </div>
+          </div>
+        </div>
+        <div class = "name">
+          <p>{{book.book_text}}<br><br></p>
+        </div>
+              
   </a>
 </div>
+
+
 <app-book-search></app-book-search>
 </body>
