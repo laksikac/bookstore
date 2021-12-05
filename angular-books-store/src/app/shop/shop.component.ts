@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Book} from '../book';
-import { BookService } from '../book.service';
+import { BookshService } from '../booksh.service';
 import { Observable, Subject } from 'rxjs';
+import { BookService } from '../book.service';
 
 import {
    debounceTime, distinctUntilChanged, switchMap
@@ -17,7 +18,7 @@ export class ShopComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor(private bookService: BookService) { }
+  constructor(private bookshService: BookshService , private bookService: BookService ) { }
   books$!: Observable<Book[]>;
   private searchTerms = new Subject<string>();
 
@@ -41,20 +42,30 @@ export class ShopComponent implements OnInit {
   }
 
   getBooks(): void {
-    this.bookService.getBooks()
+    this.bookshService.getBooks()
     .subscribe(books => this.books = books);
   }
 
   
   delete(book: Book): void {
     this.books = this.books.filter(b => b !== book);
-    this.bookService.deleteBook(book.id).subscribe();
+    this.bookshService.deleteBook(book.id).subscribe();
   }
   add(book_text: string): void {
     book_text = book_text.trim();
     if (!book_text) { return; }
-    
-      
+    this.bookshService.addBook({ book_text } as Book)
+      .subscribe(book => {
+        this.books.push(book);
+      });
   }
-
+  copy(book: Book): void {
+    this.bookshService.addBook(book as Book)
+    .subscribe(book => {
+      this.books.push(book);
+    });
+    //console.log("kkk");
+    //this.books = this.books.filter(b => b !== book);
+    //this.bookshService.deleteBook(book.id).subscribe();
+  }
 }

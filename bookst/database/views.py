@@ -1,7 +1,4 @@
 from rest_framework import viewsets
-from control.serializers import ControlSerializer
-from control.models import Control
-
 from django.db.models import Q
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -27,7 +24,7 @@ class DatabaseViewSet(viewsets.ModelViewSet):
         if search_post or search_post == '':
             try:
                 dataSet = self.queryset.filter(Q(book_text__icontains=search_post))
-            except Control.DoesNotExist:
+            except Book.DoesNotExist:
                 raise Http404("Books does not exist")
         else:
             dataSet = self.queryset.all()

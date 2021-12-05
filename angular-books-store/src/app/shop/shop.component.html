@@ -42,6 +42,9 @@
       <a routerLink="/detail/{{book.id}}">
         {{book.book_text}}
       </a>
+      <button class="add-button" (click)="copy(book);">
+        +
+      </button><br>
     </li>
   </ul>
 </div>
