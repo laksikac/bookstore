@@ -29,7 +29,8 @@ export class ShopComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.books$ = this.searchTerms.pipe(
+     this.getBooks();
+     this.books$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       debounceTime(300),
 
@@ -60,6 +61,7 @@ export class ShopComponent implements OnInit {
       });
   }
   copy(book: Book): void {
+    
     this.bookshService.addBook(book as Book)
     .subscribe(book => {
       this.books.push(book);

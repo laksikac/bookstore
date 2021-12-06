@@ -26,7 +26,8 @@
 <ul class="books">
   <li *ngFor="let book of books">
     <a routerLink="/detail/{{book.id}}">
-      <span class="badge">{{book.id}}</span> 
+      <img src="{{book.url_image}}"><br>
+      <span class="badge"></span> 
       {{book.book_text}}
     </a>
     <button class="delete" title="delete book"
