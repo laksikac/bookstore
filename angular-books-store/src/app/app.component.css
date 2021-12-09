@@ -2,17 +2,18 @@ body {
     font-family: "Lucida Console", sans-serif;
     font-size: 17px;
     padding-top: 30px;
-    background-color: #f6efe7;
+    
 }
 
 h1 {
     margin-bottom: 0;
+    text-align: center;
 }
 
 nav a {
     padding: 1rem;
     text-decoration: none;
-    margin-top: 10px;
+    margin-top: 20px;
     margin-right: 0%;
     margin-bottom: 0%;
     display: inline-block;

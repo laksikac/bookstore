@@ -3,21 +3,20 @@ import { Book } from '../book';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 
-import { BookService } from '../book.service';
+
 import { BookshService } from '../booksh.service';
 
 
 @Component({
-  selector: 'app-book-detail',
-  templateUrl: './book-detail.component.html',
-  styleUrls: ['./book-detail.component.css']
+  selector: 'app-booksh-detail',
+  templateUrl: './booksh-detail.component.html',
+  styleUrls: ['./booksh-detail.component.css']
 })
-export class BookDetailComponent implements OnInit {
+export class BookshDetailComponent implements OnInit {
   @Input() book?: Book;
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService,
     private bookshService: BookshService,
     private location: Location
   ) {}
@@ -28,7 +27,7 @@ export class BookDetailComponent implements OnInit {
   
   getBook(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.bookService.getBook(id)
+    this.bookshService.getBook(id)
       .subscribe(book => this.book = book);
   }
   goBack(): void {
@@ -36,7 +35,7 @@ export class BookDetailComponent implements OnInit {
   }
   save(): void {
     if (this.book) {
-      this.bookService.updateBook(this.book)
+      this.bookshService.updateBook(this.book)
         .subscribe(() => this.goBack());
     }
   }

@@ -9,26 +9,25 @@
 
 <body>
   <!-- Navbar (sit on top) -->
-  <div style="padding:15px 10px" id="shophome"></div>
   <div class="w3-top">
-    <div class="w3-bar w3-dark-gray w3-card" id="myNavbar" style="letter-spacing:2px; font-size: 15px;">
-      <a href="#home" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-home"></i>Home</a>
+    <div class="w3-bar w3-dark-gray w3-card" id="myNavbar" style="font-size: 15px; height: 40px; font-family: 'Noto Sans Thai', sans-serif;">
+      <app-book-search class="w3-bar-item " style="position: absolute;"></app-book-search>
       <!-- Right-sided navbar links. Hide them on small screens -->
       <div class="w3-right w3-hide-small">
-        <a routerLink="/dashboard" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-search"></i></a>
-        <a routerLink="/books" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-list"></i></a>
+        <a routerLink="/dashboard" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-home"></i></a>
+        <a routerLink="/books" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-book"></i></a>
         <a routerLink="/shop" class="w3-bar-item w3-button w3-wide w3-hover-blue-gray"><i class="fa fa-heart"></i></a>
       </div>
     </div>
   </div>
 
-<h2>Shop</h2>
+<div style="padding:15px 10px" id="shophome"></div>
+<h2 style="text-align:center;">List of Books</h2>
+
 <ul class="books">
   <li *ngFor="let book of books">
-    <a routerLink="/detail/{{book.id}}">
-      
-      <span class="badge"></span> 
-      {{book.book_text}}
+    <a routerLink="/detailsh/{{book.id}}">
+      <span class="badge" ></span> {{book.book_text}}
     </a>
     <button class="delete" title="delete book"
       (click)="delete(book)">Delete</button>
@@ -40,22 +39,9 @@
   
   <ul class="search-result">
     <li *ngFor="let book of books$ | async" >
-      <a routerLink="/detail/{{book.id}}">
-        {{book.book_text}}
-      </a>
-      <button class="add-button" (click)="copy(book);">
-        +
-      </button><br>
+      <a routerLink="/detail/{{book.id}}">{{book.book_text}}</a>
+      <button class="add-button" (click)="copy(book);">+</button><br>
     </li>
   </ul>
 </div>
-<label for="new-book">Book name : </label>
-<input id="new-book" #bookName />
-<button class="add-button" (click)="add(bookName .value); bookName.value=''">
-  Add Book
-</button><br>
-
-
-
-
 </body>
